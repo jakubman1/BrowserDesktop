@@ -248,6 +248,7 @@ input {
     border-radius: 3px;
     position: absolute;
     box-shadow: black;
+    z-index: 5;
 }
 .window-toolbar {
     background-color: #34495e;
