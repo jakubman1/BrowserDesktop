@@ -303,8 +303,9 @@ function eventListenerUpdate() {
         $('.selected').removeClass('selected');
         $(this).addClass('selected');
     });
-    $('.window').on('click', function(){
+    $('.window').on('mousedown', function(){
         $('.window-active').removeClass('window-active');
         $(this).addClass('window-active');
     });
+    $( ".window" ).draggable({ handle: ".window-toolbar" });
 }
