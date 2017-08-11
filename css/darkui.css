@@ -1,0 +1,247 @@
+/* HTML component overrides */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    cursor: url('../assets/cursors/normal.cur'), default;
+    font-family: 'Lato', sans-serif;
+    color: white;
+}
+a,
+button,
+input,
+.clickable {
+    cursor: url('../assets/cursors/Link.cur'), pointer;
+}
+input {
+    font-family: 'Lato', sans-serif;
+}
+.no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Layout */
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.center-wrapper {
+    width: 100%;
+}
+.logo {
+    margin-left: auto;
+    margin-right: auto;
+    width: 128px;
+    height: 128px;
+}
+.center-text {
+    width: 100%;
+    text-align: center;
+}
+.fullscreen {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    position: relative;
+    background: #2c3e50;
+    transition: background 0.25s ease-in-out;
+}
+.error-text {
+    color: #e74c3c;
+}
+
+.version-text {
+    position: absolute;
+    bottom: 0;
+    left: 1em;
+    color: black;
+    opacity: 0.6;
+}
+
+
+/* Hexagons */
+.hexagon {
+    fill: #232323;
+    opacity: 0.5;
+    width: 16vw;
+    height: 16vw;
+}
+.hexagon-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6vw;
+    height: 6vw;
+}
+.hexagon-wrapper {
+    width: 16vw;
+    height: 16vw;
+}
+
+/* Login screen */
+
+.user {
+    border-radius: 100%;
+    background: rgba(0,0,0,0.5);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    width: 300px;
+    height: 300px;
+    opacity: 0.6;
+    z-index: 1;
+    background: url(../assets/user-default.svg) no-repeat;
+    background-size: cover;
+}
+
+
+.login-input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    font-size: 2em;
+    padding: 5px 15px;
+    border: 2px solid transparent;
+    border-radius: 25px;
+    width: 300px;
+    text-align: center;
+    transition: all .25s ease-in-out;
+}
+.login-input:active,
+.login-input:focus {
+    border: 2px solid #3498db;
+    outline:none;
+}
+.login-btn {
+    display: block;
+    text-align: center;
+    width: 300px;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding: 5px 15px;
+    background: transparent;
+
+    color: white;
+    text-decoration: none;
+    font-size: 2em;
+
+    transition: background .25s ease-in-out;
+}
+.login-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+.login-time {
+    font-size: 8vw;
+    font-weight: 300;
+    transition: font-size 0.5s ease-in-out;
+}
+.toolbar {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+}
+.toolbar-items {
+    display: inline-flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.toolbar-item {
+    display: inline-block;
+    /*background-color: rgba(0, 0, 0, 0.5);*/
+    height: 50px;
+    width: auto;
+    font-size: 1.3em;
+    padding: 12px 24px;
+
+}
+.toolbar-item:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.toolbar-item:active {
+    background-color:  rgba(255, 255, 255, 0.3);
+}
+.toolbar-icon {
+
+}
+.toolbar-icon-lg {
+    width: 26px;
+    height: auto;
+}
+.toolbar-time {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    display: inline-block;
+    font-size: 1.3em;
+}
+.menu {
+    position: fixed;
+    bottom: -450px;
+    left: 0;
+    height: 400px;
+    width: 250px;
+    z-index: 10;
+
+    background-color: rgba(0, 0, 0, 0.7);
+
+    -webkit-transition: bottom 0.25s ease-in-out;
+    -moz-transition: bottom 0.25s ease-in-out;
+    -ms-transition: bottom 0.25s ease-in-out;
+    -o-transition: bottom 0.25s ease-in-out;
+    transition: bottom 0.25s ease-in-out;
+}
+/* Workspace */
+.workspace {
+    width: 100%;
+    height: calc(100% - 50px);
+    padding: 20px;
+    z-index: 0;
+}
+.workspace-icon {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    background: transparent;
+    border: 1px dotted transparent;
+    display: inline-block;
+    z-index: 1;
+}
+.workspace-icon:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px dotted white;
+}
+.workspace-icon:active {
+    background-color:  rgba(255, 255, 255, 0.3);
+    border: 1px solid white;
+}
+.workspace-icon-img {
+    width: 50px;
+    display: block;
+    margin: 0 auto;
+}
+.workspace-icon-name {
+    text-align: center;
+}
+.selected {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px dotted white;
+}
+/* Helper classes */
+
+.hidden {
+    display: none !important;
+}

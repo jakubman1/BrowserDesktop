@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dark UI</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="css/darkui.css">
+</head>
+<body>
+<div id="startup-screen" class="fullscreen">
+    <h1 class="center-text time login-time">00:00:00</h1>
+    <div class="hexagon-wrapper clickable center" onclick="start()" id="powerup-button">
+        <img src="assets/hex.svg" class="hexagon">
+        <img src="assets/power.png" class="hexagon-icon" id="startup-icon">
+    </div>
+    <div class="center hidden" id="login-form">
+        <div class="center-wrapper">
+            <div class="user" id="login-userimg"></div>
+            <p class="error-text center-text" id="login-err"></p>
+            <input type="text" name="username" id="login-username" placeholder="Username" class="login-input" onChange="checkUsername()" onkeypress="checkLength('username')">
+            <input type="password" name="password" id="login-password" placeholder="Password" class="login-input" onkeypress="checkLength('password')">
+            <a href="#" class="login-btn" onClick="login()">Login</a>
+        </div>
+
+    </div>
+    <footer>
+        <p class="version-text">v1.0.0</p>
+    </footer>
+</div>
+<div id="runtime-screen" class="fullscreen hidden">
+    <div class="workspace no-select" id="workspace" onClick="unselect()">
+        <div class="workspace-icon" ondblclick="openCmd()">
+            <img src="assets/terminal.png" class="workspace-icon-img">
+            <p class="workspace-icon-name">Terminal</p>
+        </div>
+    </div>
+    <div class="menu" id="menu">
+        <h4 class="center-text">Menu</h4>
+        <ul class="menu-items">
+            <li class="menu-item clickable" onClick="logout()">log out</li>
+        </ul>
+    </div>
+    <div class="toolbar no-select">
+        <ul class="toolbar-items">
+            <li class="toolbar-item clickable" onclick="toggleMenu()" id="menu-toggler"><img src="assets/loading.GIF" class="toolbar-icon-lg" id="menu-toggler-img"></li>
+            <li class="toolbar-item clickable">test</li>
+        </ul>
+        <p class="time toolbar-time">00:00:00</p>
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/functions.js"></script>
+</body>
+</html>
