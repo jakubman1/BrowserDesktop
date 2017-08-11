@@ -251,12 +251,18 @@ input {
     z-index: 5;
 }
 .window-toolbar {
-    background-color: #34495e;
+    background-color: dimgray;
     position: relative;
     width: 100%;
     height: 30px;
     top: 0;
     left: 0;
+}
+.window-active {
+    z-index: 6;
+}
+.window-active .window-toolbar {
+    background-color: #34495e;
 }
 .window-close {
     color: white;

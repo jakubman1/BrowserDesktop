@@ -230,6 +230,9 @@ function selectIcon() {
 function unselect() {
     $('.selected').removeClass('selected');
 }
+function openWindow(name, content) {
+    $('#workspace').append('');
+}
 function openFolder(id) {
     unselect();
     //TODO: Folder UI and content generation
@@ -262,5 +265,9 @@ function eventListenerUpdate() {
         event.stopPropagation();
         $('.selected').removeClass('selected');
         $(this).addClass('selected');
+    });
+    $('.window').on('click', function(){
+        $('.window-active').removeClass('window-active');
+        $(this).addClass('window-active');
     });
 }
