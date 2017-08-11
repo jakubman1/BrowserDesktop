@@ -238,6 +238,9 @@ function openFolder(id) {
 function openCmd() {
     unselect();
 }
+function closeWindow(id) {
+    $('#window-' + id).remove();
+}
 /**
  * Helper function that updates string in element with class #time. Called every 1000ms.
  */

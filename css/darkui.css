@@ -11,7 +11,8 @@ body {
 a,
 button,
 input,
-.clickable {
+.clickable,
+.window-close {
     cursor: url('../assets/cursors/Link.cur'), pointer;
 }
 input {
@@ -239,6 +240,42 @@ input {
 .selected {
     background-color: rgba(255, 255, 255, 0.2);
     border: 1px dotted white;
+}
+.window {
+    width: 550px;
+    height: 350px;
+    background-color: white;
+    border-radius: 3px;
+    position: absolute;
+    box-shadow: black;
+}
+.window-toolbar {
+    background-color: #34495e;
+    position: relative;
+    width: 100%;
+    height: 30px;
+    top: 0;
+    left: 0;
+}
+.window-close {
+    color: white;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background-color: #e74c3c;
+    text-align: center;
+    font-size: 20px;
+}
+.window-close:hover {
+    background-color: #c0392b;
+}
+.window-name {
+    color: white;
+    margin-left: 10px;
+    display: inline-block;
+    margin-top: 5px;
 }
 /* Helper classes */
 
