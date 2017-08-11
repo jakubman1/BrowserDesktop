@@ -7,8 +7,10 @@
 var menuHidden = true;
 //This variable updates based on selected folder. Used for generating folder parent.
 var currentFolderId = 0;
-//This variable holds the biggest folderId. Used for creating new folder IDs
+//This variable holds the biggest folder ID. Used for creating new folders
 var folderId = 0;
+//This variable holds the biggest Window ID. Used for creating new windows
+var windowId = 0;
 
 $(document).ready(function(){
     if (typeof(Storage) === "undefined") {
@@ -203,6 +205,25 @@ function getFoldersJson() {
         return [];
     }
 }
+/**
+ * Returns object of singe folder with given ID.
+ * Returns empty object if folder was not found
+ */
+function getFolderById(id) {
+    var json = getFoldersJson();
+    var result = {};
+    jQuery.each(json, function(i, val) {
+        if(val.id === id) {
+            result = val;
+            //If result is found, stop looping
+            return result;
+        }
+    });
+    return result;
+}
+function getFoldersByParent(parentId){
+
+}
 function toggleMenu() {
     if(menuHidden) {
         $('#menu').css('bottom','50px');
@@ -231,12 +252,28 @@ function unselect() {
     $('.selected').removeClass('selected');
 }
 function openWindow(name, content) {
-    $('#workspace').append('');
+    windowId++;
+    $('#workspace').append('<div class="window" id="window-'+ windowId +'">\n' +
+        '            <div class="window-toolbar">\n' +
+        '                <div class="window-close" onclick="closeWindow(' + windowId +')">x</div>\n' +
+        '                <p class="window-name">' + name + '</p>\n' +
+        '            </div>\n' +
+        '            <div class="window-content">\n' +
+        '\n' + content +
+        '            </div>\n' +
+        '        </div>');
 }
 function openFolder(id) {
     unselect();
-    //TODO: Folder UI and content generation
-    console.log(id);
+    var folderInfo = getFolderById(id);
+    console.log(folderInfo);
+    if(!jQuery.isEmptyObject(folderInfo) && folderInfo.author === localStorage.getItem("username")) {
+        openWindow(folderInfo.name,"Test");
+        eventListenerUpdate();
+    }
+    else {
+        console.log('Script tried to open folder with ID ' + id + ', but folder with that ID does not exist or you do not have a permission to open it')
+    }
 }
 function openCmd() {
     unselect();
