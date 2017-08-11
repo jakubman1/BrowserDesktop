@@ -251,7 +251,6 @@ input {
 
     border: 1px solid #34495e;
 
-
 }
 .window-toolbar {
     background-color: dimgray;
@@ -298,6 +297,15 @@ input {
     min-height: 350px;
     background: black;
     color: white;
+    font-size: 0.8em;
+    -webkit-user-select: all;
+    -moz-user-select: all;
+    -khtml-user-select: all;
+    -ms-user-select: all;
+}
+.terminal::selection {
+    background: white;
+    color: black;
 }
 .terminal-input {
     background: black;

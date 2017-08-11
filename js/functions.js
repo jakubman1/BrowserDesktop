@@ -284,20 +284,28 @@ function openCmd() {
 function closeWindow(id) {
     $('#window-' + id).remove();
 }
-/**
- * Helper function that updates string in element with class #time. Called every 1000ms.
- */
-function updateTime() {
+function getTime() {
     var d = new Date();
     var minutes;
     var seconds;
     if(d.getMinutes() < 10) { minutes = "0" + d.getMinutes()} else { minutes = d.getMinutes() }
     if(d.getSeconds() < 10) { seconds = "0" + d.getSeconds()} else { seconds = d.getSeconds() }
     var timeString = d.getHours() + ":" + minutes + ":" + seconds;
+    return timeString;
+
+}
+/**
+ * Helper function that updates string in element with class #time. Called every 1000ms.
+ */
+function updateTime() {
     $('.time').each(function(){
-        $(this).text(timeString);
+        $(this).text(getTime());
     });
 
+}
+
+function appendToTerminal(text) {
+    $('.terminal').append(localStorage.getItem('username') + '@' + getTime() + '> ' + text + '<br>')
 }
 
 function eventListenerUpdate() {
@@ -315,9 +323,11 @@ function eventListenerUpdate() {
 function updateCommandListening() {
     $(".terminal-input").keyup(function(event){
         if(event.keyCode == 13){
-            switch ($(this).val()) {
+            var command = $(this).val();
+            $(this).val('');
+            switch (command) {
                 default:
-                    $('.terminal').append($(this).val() + ' is not a valid command.<br>');
+                    appendToTerminal(command + ' is not a valid command.');
             }
         }
     });
