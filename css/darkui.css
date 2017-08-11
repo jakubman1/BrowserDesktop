@@ -287,6 +287,26 @@ input {
     display: inline-block;
     margin-top: 5px;
 }
+.window-content {
+    overflow: hidden;
+}
+.terminal {
+    overflow-y: scroll;
+    padding-right: 17px;
+    width: 100%;
+    height: auto;
+    min-height: 350px;
+    background: black;
+    color: white;
+}
+.terminal-input {
+    background: black;
+    color: white;
+    width: 100%;
+    font-size: 0.8em;
+    border: none;
+    outline: none;
+}
 /* Helper classes */
 
 .hidden {

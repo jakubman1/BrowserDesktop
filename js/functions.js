@@ -277,6 +277,9 @@ function openFolder(id) {
 }
 function openCmd() {
     unselect();
+    openWindow('Terminal', '<div class="terminal"></div><input class="terminal-input" type="text">');
+    eventListenerUpdate();
+    updateCommandListening();
 }
 function closeWindow(id) {
     $('#window-' + id).remove();
@@ -308,4 +311,14 @@ function eventListenerUpdate() {
         $(this).addClass('window-active');
     });
     $( ".window" ).draggable({ handle: ".window-toolbar" });
+}
+function updateCommandListening() {
+    $(".terminal-input").keyup(function(event){
+        if(event.keyCode == 13){
+            switch ($(this).val()) {
+                default:
+                    $('.terminal').append($(this).val() + ' is not a valid command.<br>');
+            }
+        }
+    });
 }
