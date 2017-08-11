@@ -59,9 +59,6 @@ function fullScreen() {
 /**
  * When clicked on start button - show login screen
  */
-function unselect() {
-    $('.selected').removeClass('selected');
-}
 function start() {
     fullScreen();
     $('#startup-icon').attr('src','assets/loading.gif');
@@ -118,7 +115,7 @@ function checkLength(field) {
             return false;
     }
 }
-/*
+/**
 * You should replace this system with database checks and encrypt passwords before sending them to PHP.
 * I don't use PHP here, also I don't really need to protect passwords, so I'm using the worst security possible..
 * You should NEVER use this in production environment
@@ -219,13 +216,23 @@ function toggleMenu() {
     }
 
 }
+/**
+ * Executed when icon is clicked. Adds class .selected to clicked icon.
+ */
 function selectIcon() {
     event.stopPropagation();
     $('.selected').removeClass('selected');
     $(this).addClass('selected');
 }
+/**
+ * Helper fuunction - unselects all selected icons
+ */
+function unselect() {
+    $('.selected').removeClass('selected');
+}
 function openFolder(id) {
     unselect();
+    //TODO: Folder UI and content generation
     console.log(id);
 }
 function openCmd() {
