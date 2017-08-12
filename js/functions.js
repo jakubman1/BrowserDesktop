@@ -329,6 +329,7 @@ function updateCommandListening() {
             var command = commandString.split(" ");
             console.log(command);
             switch (command[0]) {
+                //mkdir command
                 case 'mkdir':
                     if(command[1]!== undefined) {
                         if(command[2] !== undefined) {
@@ -355,6 +356,10 @@ function updateCommandListening() {
                     else {
                         appendToTerminal("Folder name can't be empty");
                     }
+                    break;
+                //Clear command
+                case 'clear':
+                    $('.terminal').empty();
                     break;
                 default:
                     appendToTerminal(command + ' is not a valid command.');
