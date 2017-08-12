@@ -187,7 +187,6 @@ input {
     right: 10px;
     bottom: 0;
     display: inline-block;
-    font-size: 1.3em;
 }
 .menu {
     position: fixed;
@@ -203,7 +202,7 @@ input {
     -moz-transition: bottom 0.25s ease-in-out;
     -ms-transition: bottom 0.25s ease-in-out;
     -o-transition: bottom 0.25s ease-in-out;
-    transition: bottom 0.25s ease-in-out;
+        transition: bottom 0.25s ease-in-out;
 }
 /* Workspace */
 .workspace {
@@ -298,10 +297,11 @@ input {
     background: black;
     color: white;
     font-size: 0.8em;
-    -webkit-user-select: all;
-    -moz-user-select: all;
-    -khtml-user-select: all;
-    -ms-user-select: all;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -khtml-user-select: text;
+    -ms-user-select: text;
+        user-select: text;
 }
 .terminal::selection {
     background: white;
