@@ -213,7 +213,7 @@ function getFolderById(id) {
     var json = getFoldersJson();
     var result = {};
     jQuery.each(json, function(i, val) {
-        if(val.id === id) {
+        if(val.id == id) {
             result = val;
             //If result is found, stop looping
             return result;
@@ -295,7 +295,7 @@ function getTime() {
 
 }
 /**
- * Helper function that updates string in element with class #time. Called every 1000ms.
+ * Helper function that updates string in element with class .time. Called every 1000ms.
  */
 function updateTime() {
     $('.time').each(function(){
@@ -323,9 +323,39 @@ function eventListenerUpdate() {
 function updateCommandListening() {
     $(".terminal-input").keyup(function(event){
         if(event.keyCode == 13){
-            var command = $(this).val();
-            $(this).val('');
-            switch (command) {
+            var commandString = $(this).val();
+            $(this).val('')
+            appendToTerminal(commandString);
+            var command = commandString.split(" ");
+            console.log(command);
+            switch (command[0]) {
+                case 'mkdir':
+                    if(command[1]!== undefined) {
+                        if(command[2] !== undefined) {
+                            if(!isNaN(command[2])) {
+                                var folderInfo = getFolderById(command[2]);
+                                console.log(folderInfo);
+                                if(!jQuery.isEmptyObject(folderInfo) && folderInfo.author === localStorage.getItem("username")) {
+                                    addFolder(command[1],command[2]);
+                                    appendToTerminal('Folder ' + command[1] + ' created in folder ' + folderInfo.name + ' (id ' + folderInfo.id + ')');
+                                }
+                                else {
+                                    appendToTerminal('Folder with ID ' + command[2] + " does not exist or you don't have a permission to write to it.");
+                                }
+                            }
+                            else {
+                                appendToTerminal('Parent ID must be a number');
+                            }
+                        }
+                        else {
+                            addFolder(command[1],0);
+                            appendToTerminal('Folder ' + command[1] + ' created');
+                        }
+                    }
+                    else {
+                        appendToTerminal("Folder name can't be empty");
+                    }
+                    break;
                 default:
                     appendToTerminal(command + ' is not a valid command.');
             }

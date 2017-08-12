@@ -24,21 +24,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="darkui.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="darkui.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/darkui.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3829">
-              <caret line="188" column="26" lean-forward="false" selection-start-line="188" selection-start-column="26" selection-end-line="188" selection-end-column="26" />
+            <state relative-caret-position="-629">
+              <caret line="250" column="30" lean-forward="false" selection-start-line="250" selection-start-column="30" selection-end-line="250" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="functions.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="functions.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/functions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1272">
-              <caret line="328" column="24" lean-forward="false" selection-start-line="328" selection-start-column="24" selection-end-line="328" selection-end-column="24" />
+            <state relative-caret-position="823">
+              <caret line="339" column="80" lean-forward="false" selection-start-line="339" selection-start-column="80" selection-end-line="339" selection-end-column="80" />
               <folding>
                 <element signature="n#!!block;n#fullScreen#0" expanded="false" />
                 <element signature="n#!!block;n#checkLength#0" expanded="false" />
@@ -61,8 +61,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/functions.js" />
         <option value="$PROJECT_DIR$/css/darkui.css" />
+        <option value="$PROJECT_DIR$/js/functions.js" />
       </list>
     </option>
   </component>
@@ -155,12 +155,12 @@
       <updated>1502441825291</updated>
       <workItem from="1502441827996" duration="3490000" />
       <workItem from="1502451047891" duration="6706000" />
-      <workItem from="1502527745244" duration="425000" />
+      <workItem from="1502527745244" duration="2774000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10621000" />
+    <option name="totallyTimeSpent" value="12970000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3872" height="2092" extended-state="6" />
@@ -192,7 +192,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -251,17 +251,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1272">
-          <caret line="328" column="24" lean-forward="false" selection-start-line="328" selection-start-column="24" selection-end-line="328" selection-end-column="24" />
-          <folding>
-            <element signature="n#!!block;n#fullScreen#0" expanded="false" />
-            <element signature="n#!!block;n#checkLength#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="691">
@@ -272,9 +261,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/darkui.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3829">
-          <caret line="188" column="26" lean-forward="false" selection-start-line="188" selection-start-column="26" selection-end-line="188" selection-end-column="26" />
+        <state relative-caret-position="-629">
+          <caret line="250" column="30" lean-forward="false" selection-start-line="250" selection-start-column="30" selection-end-line="250" selection-end-column="30" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="823">
+          <caret line="339" column="80" lean-forward="false" selection-start-line="339" selection-start-column="80" selection-end-line="339" selection-end-column="80" />
+          <folding>
+            <element signature="n#!!block;n#fullScreen#0" expanded="false" />
+            <element signature="n#!!block;n#checkLength#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
