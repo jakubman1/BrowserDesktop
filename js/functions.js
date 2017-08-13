@@ -273,7 +273,6 @@ function openWindow(name, content) {
 function openFolder(id) {
     unselect();
     var folderInfo = getFolderById(id);
-    console.log(folderInfo);
     if(!jQuery.isEmptyObject(folderInfo) && folderInfo.author === localStorage.getItem("username")) {
         openWindow(folderInfo.name,"Test");
         eventListenerUpdate();
@@ -337,7 +336,6 @@ function updateCommandListening() {
             $(this).val('')
             appendToTerminal(commandString);
             var command = commandString.split(" ");
-            console.log(command);
             switch (command[0]) {
                 //mkdir command
                 case 'mkdir':
@@ -345,7 +343,6 @@ function updateCommandListening() {
                         if(command[2] !== undefined) {
                             if(!isNaN(command[2])) {
                                 var folderInfo = getFolderById(command[2]);
-                                console.log(folderInfo);
                                 if(!jQuery.isEmptyObject(folderInfo) && folderInfo.author === localStorage.getItem("username")) {
                                     addFolder(command[1],Number(command[2]));
                                     appendToTerminal('Folder ' + command[1] + ' created in folder ' + folderInfo.name + ' (id ' + folderInfo.id + ')');
