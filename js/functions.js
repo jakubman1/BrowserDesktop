@@ -3,6 +3,10 @@
  * For business purposes please reference me somewhere in the code.
  * Need something explained? Want to use this system? Contact me at jakubman1@gmail.com to get help!
  */
+
+/******************
+ * Global variables
+ *****************/
 //Helper variable for toggling menu.
 var menuHidden = true;
 //This variable updates based on selected folder. Used for generating folder parent.
@@ -12,6 +16,10 @@ var folderId = 0;
 //This variable holds the biggest Window ID. Used for creating new windows
 var windowId = 0;
 
+
+/******************
+ * Startup functions
+ *****************/
 $(document).ready(function(){
     if (typeof(Storage) === "undefined") {
         alert('Your browser does not support localStorage. To use this demo you need to switch to a modern browser.');
@@ -29,8 +37,6 @@ $(document).ready(function(){
         }
     });
     eventListenerUpdate();
-
-
 });
 /**
  *  Helper function - request fullscreen on different browsers
@@ -58,6 +64,10 @@ function fullScreen() {
         }
     }
 }
+
+/******************
+ * Login screen
+ *****************/
 /**
  * When clicked on start button - show login screen
  */
@@ -143,13 +153,32 @@ function login() {
     }
 
 }
-function logout() {
-    toggleMenu();
-    $('#workspace').empty();
-    $('#workspace').append('<div class="workspace-icon" ondblclick="openCmd()"><img src="assets/terminal.png" class="workspace-icon-img"><p class="workspace-icon-name">Terminal</p></div>');
-    localStorage.removeItem("username");
-    $('#startup-screen').removeClass('hidden');
-    $('#runtime-screen').addClass('hidden');
+
+/******************
+ * Basic workspace functionality
+ *****************/
+
+/**
+ * Returns current time as string in HH:MM:SS format
+ */
+function getTime() {
+    var d = new Date();
+    var minutes;
+    var seconds;
+    if(d.getMinutes() < 10) { minutes = "0" + d.getMinutes()} else { minutes = d.getMinutes() }
+    if(d.getSeconds() < 10) { seconds = "0" + d.getSeconds()} else { seconds = d.getSeconds() }
+    var timeString = d.getHours() + ":" + minutes + ":" + seconds;
+    return timeString;
+
+}
+/**
+ * Helper function that updates string in element with class .time. Called every 1000ms.
+ */
+function updateTime() {
+    $('.time').each(function(){
+        $(this).text(getTime());
+    });
+
 }
 function showRuntimeScreen() {
     if(localStorage.getItem('username') !== undefined) {
@@ -167,6 +196,60 @@ function renderRuntimeScreen() {
     });
     eventListenerUpdate();
 }
+function logout() {
+    toggleMenu();
+    $('#workspace').empty();
+    $('#workspace').append('<div class="workspace-icon" ondblclick="openCmd()"><img src="assets/terminal.png" class="workspace-icon-img"><p class="workspace-icon-name">Terminal</p></div>');
+    localStorage.removeItem("username");
+    $('#startup-screen').removeClass('hidden');
+    $('#runtime-screen').addClass('hidden');
+}
+function toggleMenu() {
+    if(menuHidden) {
+        $('#menu').css('bottom','50px');
+        $('#menu-toggler-img').attr('src','assets/arrow-down.png');
+        menuHidden = false;
+    }
+    else {
+        $('#menu').css('bottom','-450px');
+        $('#menu-toggler-img').attr('src','assets/loading.GIF');
+        menuHidden = true;
+    }
+
+}
+/**
+ * Executed when icon is clicked. Adds class .selected to clicked icon.
+ */
+function selectIcon() {
+    event.stopPropagation();
+    $('.selected').removeClass('selected');
+    $(this).addClass('selected');
+}
+/**
+ * Helper fuunction - unselects all selected icons
+ */
+function unselect() {
+    $('.selected').removeClass('selected');
+}
+function openWindow(name, content) {
+    windowId++;
+    $('#workspace').append('<div class="window" id="window-'+ windowId +'">\n' +
+        '            <div class="window-toolbar">\n' +
+        '                <div class="window-close" onclick="closeWindow(' + windowId +')">x</div>\n' +
+        '                <p class="window-name">' + name + '</p>\n' +
+        '            </div>\n' +
+        '            <div class="window-content">\n' +
+        '\n' + content +
+        '            </div>\n' +
+        '        </div>');
+}
+function closeWindow(id) {
+    $('#window-' + id).remove();
+}
+
+/******************
+ * Folders
+ *****************/
 /*
 * Folder structure:
 * { "id": int,
@@ -231,45 +314,6 @@ function getFoldersByParent(parentId){
     });
     return result;
 }
-function toggleMenu() {
-    if(menuHidden) {
-        $('#menu').css('bottom','50px');
-        $('#menu-toggler-img').attr('src','assets/arrow-down.png');
-        menuHidden = false;
-    }
-    else {
-        $('#menu').css('bottom','-450px');
-        $('#menu-toggler-img').attr('src','assets/loading.GIF');
-        menuHidden = true;
-    }
-
-}
-/**
- * Executed when icon is clicked. Adds class .selected to clicked icon.
- */
-function selectIcon() {
-    event.stopPropagation();
-    $('.selected').removeClass('selected');
-    $(this).addClass('selected');
-}
-/**
- * Helper fuunction - unselects all selected icons
- */
-function unselect() {
-    $('.selected').removeClass('selected');
-}
-function openWindow(name, content) {
-    windowId++;
-    $('#workspace').append('<div class="window" id="window-'+ windowId +'">\n' +
-        '            <div class="window-toolbar">\n' +
-        '                <div class="window-close" onclick="closeWindow(' + windowId +')">x</div>\n' +
-        '                <p class="window-name">' + name + '</p>\n' +
-        '            </div>\n' +
-        '            <div class="window-content">\n' +
-        '\n' + content +
-        '            </div>\n' +
-        '        </div>');
-}
 function openFolder(id) {
     unselect();
     var folderInfo = getFolderById(id);
@@ -281,54 +325,23 @@ function openFolder(id) {
         console.log('Script tried to open folder with ID ' + id + ', but folder with that ID does not exist or you do not have a permission to open it')
     }
 }
+/******************
+ * Terminal
+ *****************/
 function openCmd() {
     unselect();
     openWindow('Terminal', '<div class="terminal"></div><input class="terminal-input" type="text">');
     eventListenerUpdate();
     updateCommandListening();
 }
-function closeWindow(id) {
-    $('#window-' + id).remove();
-}
-function getTime() {
-    var d = new Date();
-    var minutes;
-    var seconds;
-    if(d.getMinutes() < 10) { minutes = "0" + d.getMinutes()} else { minutes = d.getMinutes() }
-    if(d.getSeconds() < 10) { seconds = "0" + d.getSeconds()} else { seconds = d.getSeconds() }
-    var timeString = d.getHours() + ":" + minutes + ":" + seconds;
-    return timeString;
 
-}
-/**
- * Helper function that updates string in element with class .time. Called every 1000ms.
- */
-function updateTime() {
-    $('.time').each(function(){
-        $(this).text(getTime());
-    });
-
-}
 
 function appendToTerminal(text) {
     $('.window-active .window-content .terminal').append(localStorage.getItem('username') + '@' + getTime() + '> ' + text + '<br>')
 }
-
-function eventListenerUpdate() {
-    $('.workspace-icon').on('click',function(){
-        event.stopPropagation();
-        $('.selected').removeClass('selected');
-        $(this).addClass('selected');
-    });
-    $('.window').on('mousedown', function(){
-        $('.window-active').removeClass('window-active');
-        $(this).addClass('window-active');
-    });
-    $( ".window" ).draggable({ handle: ".window-toolbar" });
-    $('.terminal').on('click', function(){
-        $('.window-active .window-content .terminal-input').focus();
-    });
-}
+/**
+ * Terminal commands
+ */
 function updateCommandListening() {
     $(".terminal-input").keyup(function(event){
         if(event.keyCode == 13){
@@ -372,5 +385,24 @@ function updateCommandListening() {
                     appendToTerminal(command[0] + ' is not a valid command.');
             }
         }
+    });
+}
+
+/******************
+ * Dynamic content updates
+ *****************/
+function eventListenerUpdate() {
+    $('.workspace-icon').on('click',function(){
+        event.stopPropagation();
+        $('.selected').removeClass('selected');
+        $(this).addClass('selected');
+    });
+    $('.window').on('mousedown', function(){
+        $('.window-active').removeClass('window-active');
+        $(this).addClass('window-active');
+    });
+    $( ".window" ).draggable({ handle: ".window-toolbar" });
+    $('.terminal').on('click', function(){
+        $('.window-active .window-content .terminal-input').focus();
     });
 }
