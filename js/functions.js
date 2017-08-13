@@ -362,7 +362,7 @@ function updateCommandListening() {
                     $('.terminal').empty();
                     break;
                 default:
-                    appendToTerminal(command + ' is not a valid command.');
+                    appendToTerminal(command[0] + ' is not a valid command.');
             }
         }
     });
