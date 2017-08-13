@@ -222,7 +222,14 @@ function getFolderById(id) {
     return result;
 }
 function getFoldersByParent(parentId){
-
+    var json = getFoldersJson();
+    var result = {};
+    jQuery.each(json, function(i, val) {
+        if(val.parent == parentId) {
+            result += val;
+        }
+    });
+    return result;
 }
 function toggleMenu() {
     if(menuHidden) {
