@@ -347,7 +347,7 @@ function updateCommandListening() {
                                 var folderInfo = getFolderById(command[2]);
                                 console.log(folderInfo);
                                 if(!jQuery.isEmptyObject(folderInfo) && folderInfo.author === localStorage.getItem("username")) {
-                                    addFolder(command[1],command[2]);
+                                    addFolder(command[1],Number(command[2]));
                                     appendToTerminal('Folder ' + command[1] + ' created in folder ' + folderInfo.name + ' (id ' + folderInfo.id + ')');
                                 }
                                 else {
