@@ -319,6 +319,9 @@ function eventListenerUpdate() {
         $(this).addClass('window-active');
     });
     $( ".window" ).draggable({ handle: ".window-toolbar" });
+    $('.terminal').on('click', function(){
+        $('.window-active .window-content .terminal-input').focus();
+    });
 }
 function updateCommandListening() {
     $(".terminal-input").keyup(function(event){
