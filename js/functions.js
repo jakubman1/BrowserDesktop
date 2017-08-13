@@ -305,7 +305,7 @@ function updateTime() {
 }
 
 function appendToTerminal(text) {
-    $('.terminal').append(localStorage.getItem('username') + '@' + getTime() + '> ' + text + '<br>')
+    $('.window-active .window-content .terminal').append(localStorage.getItem('username') + '@' + getTime() + '> ' + text + '<br>')
 }
 
 function eventListenerUpdate() {
