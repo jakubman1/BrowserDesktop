@@ -250,7 +250,7 @@ input {
 
     border: 1px solid #34495e;
 }
-.window-toolbar {
+.window-topbar {
     background-color: dimgray;
     position: relative;
     width: 100%;
@@ -261,7 +261,7 @@ input {
 .window-active {
     z-index: 6;
 }
-.window-active .window-toolbar {
+.window-active .window-topbar {
     background-color: #34495e;
 }
 .window-close {

@@ -234,7 +234,7 @@ function unselect() {
 function openWindow(name, content) {
     windowId++;
     $('#workspace').append('<div class="window" id="window-'+ windowId +'">\n' +
-        '            <div class="window-toolbar">\n' +
+        '            <div class="window-topbar">\n' +
         '                <div class="window-close" onclick="closeWindow(' + windowId +')">x</div>\n' +
         '                <p class="window-name">' + name + '</p>\n' +
         '            </div>\n' +
@@ -250,7 +250,7 @@ function closeWindow(id) {
 /******************
  * Folders
  *****************/
-/*
+/**
 * Folder structure:
 * { "id": int,
 *   "name": string,
@@ -401,7 +401,7 @@ function eventListenerUpdate() {
         $('.window-active').removeClass('window-active');
         $(this).addClass('window-active');
     });
-    $( ".window" ).draggable({ handle: ".window-toolbar" });
+    $( ".window" ).draggable({ handle: ".window-topbar" });
     $('.terminal').on('click', function(){
         $('.window-active .window-content .terminal-input').focus();
     });
