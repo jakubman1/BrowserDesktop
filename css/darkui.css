@@ -218,8 +218,26 @@ input {
 }
 .workspace-icon-name { text-align: center; }
 .selected {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255,255,255,0.2);
   border: 1px dotted white;
+}
+.folder-icon {
+  z-index: 1;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  color: black;
+  background: transparent;
+  border: 1px dotted transparent;
+}
+.folder-icon:hover {
+  background-color: rgba(0,0,0,0.4);
+  border: 1px dotted white;
+}
+.folder-icon:active {
+  background-color: rgba(0,0,0,0.3);
+  border: 1px solid white;
 }
 .window {
   position: absolute;
