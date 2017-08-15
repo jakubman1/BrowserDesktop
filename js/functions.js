@@ -309,7 +309,13 @@ function getFoldersByParent(parentId){
     var result = {};
     jQuery.each(json, function(i, val) {
         if(val.parent == parentId) {
-            result += val;
+            if(jQuery.isEmptyObject(result)) {
+                result = val;
+            }
+            else {
+                $.merge(result, val);
+            }
+
         }
     });
     return result;
