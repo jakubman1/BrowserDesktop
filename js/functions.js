@@ -402,7 +402,7 @@ function eventListenerUpdate() {
         $('.window-active').removeClass('window-active');
         $(this).addClass('window-active');
     });
-    $( ".window" ).draggable({ handle: ".window-topbar" });
+    $( ".window" ).draggable({ handle: ".window-topbar", containment: "#workspace", scroll: false });
     $('.terminal').on('click', function(){
         $('.window-active .window-content .terminal-input').focus();
     });
