@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f454d75d-252b-4c5e-9490-ffa2c4c82186" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/functions.js" afterPath="$PROJECT_DIR$/js/functions.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -43,11 +42,14 @@
       <file leaf-file-name="functions.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/functions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="325" column="101" lean-forward="true" selection-start-line="325" selection-start-column="101" selection-end-line="325" selection-end-column="101" />
+            <state relative-caret-position="734">
+              <caret line="372" column="129" lean-forward="true" selection-start-line="372" selection-start-column="129" selection-end-line="372" selection-end-column="129" />
               <folding>
                 <element signature="n#!!block;n#fullScreen#0" expanded="false" />
                 <element signature="n#!!block;n#checkLength#0" expanded="false" />
+                <marker date="1502826676205" expanded="true" signature="11931:11943" ph="..." />
+                <marker date="1502826676205" expanded="true" signature="12064:12075" ph="..." />
+                <marker date="1502826676205" expanded="true" signature="12210:12220" ph="..." />
               </folding>
             </state>
           </provider>
@@ -165,12 +167,12 @@
       <workItem from="1502527745244" duration="3503000" />
       <workItem from="1502609945762" duration="2401000" />
       <workItem from="1502819332715" duration="2560000" />
-      <workItem from="1502822608104" duration="3719000" />
+      <workItem from="1502822608104" duration="4164000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22379000" />
+    <option name="totallyTimeSpent" value="22824000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -222,6 +224,9 @@
           <folding>
             <element signature="n#!!block;n#fullScreen#0" expanded="false" />
             <element signature="n#!!block;n#checkLength#0" expanded="false" />
+            <marker date="1502826676205" expanded="true" signature="11931:11943" ph="..." />
+            <marker date="1502826676205" expanded="true" signature="12064:12075" ph="..." />
+            <marker date="1502826676205" expanded="true" signature="12210:12220" ph="..." />
           </folding>
         </state>
       </provider>
@@ -257,6 +262,9 @@
           <folding>
             <element signature="n#!!block;n#fullScreen#0" expanded="false" />
             <element signature="n#!!block;n#checkLength#0" expanded="false" />
+            <marker date="1502826676205" expanded="true" signature="11931:11943" ph="..." />
+            <marker date="1502826676205" expanded="true" signature="12064:12075" ph="..." />
+            <marker date="1502826676205" expanded="true" signature="12210:12220" ph="..." />
           </folding>
         </state>
       </provider>
@@ -284,6 +292,9 @@
           <folding>
             <element signature="n#!!block;n#fullScreen#0" expanded="false" />
             <element signature="n#!!block;n#checkLength#0" expanded="false" />
+            <marker date="1502826676205" expanded="true" signature="11931:11943" ph="..." />
+            <marker date="1502826676205" expanded="true" signature="12064:12075" ph="..." />
+            <marker date="1502826676205" expanded="true" signature="12210:12220" ph="..." />
           </folding>
         </state>
       </provider>
@@ -311,6 +322,9 @@
           <folding>
             <element signature="n#!!block;n#fullScreen#0" expanded="false" />
             <element signature="n#!!block;n#checkLength#0" expanded="false" />
+            <marker date="1502826676205" expanded="true" signature="11931:11943" ph="..." />
+            <marker date="1502826676205" expanded="true" signature="12064:12075" ph="..." />
+            <marker date="1502826676205" expanded="true" signature="12210:12220" ph="..." />
           </folding>
         </state>
       </provider>
@@ -330,6 +344,9 @@
           <folding>
             <element signature="n#!!block;n#fullScreen#0" expanded="false" />
             <element signature="n#!!block;n#checkLength#0" expanded="false" />
+            <marker date="1502826676205" expanded="true" signature="11931:11943" ph="..." />
+            <marker date="1502826676205" expanded="true" signature="12064:12075" ph="..." />
+            <marker date="1502826676205" expanded="true" signature="12210:12220" ph="..." />
           </folding>
         </state>
       </provider>
@@ -360,11 +377,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/functions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="325" column="101" lean-forward="true" selection-start-line="325" selection-start-column="101" selection-end-line="325" selection-end-column="101" />
+        <state relative-caret-position="734">
+          <caret line="372" column="129" lean-forward="true" selection-start-line="372" selection-start-column="129" selection-end-line="372" selection-end-column="129" />
           <folding>
             <element signature="n#!!block;n#fullScreen#0" expanded="false" />
             <element signature="n#!!block;n#checkLength#0" expanded="false" />
+            <marker date="1502826676205" expanded="true" signature="11931:11943" ph="..." />
+            <marker date="1502826676205" expanded="true" signature="12064:12075" ph="..." />
+            <marker date="1502826676205" expanded="true" signature="12210:12220" ph="..." />
           </folding>
         </state>
       </provider>

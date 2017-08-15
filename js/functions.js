@@ -353,9 +353,16 @@ function updateCommandListening() {
     $(".terminal-input").keyup(function(event){
         if(event.keyCode == 13){
             var commandString = $(this).val();
-            $(this).val('')
-            appendToTerminal(commandString);
+            $(this).val('');
             var command = commandString.split(" ");
+            var terminalString = '<span style="color:yellow">' + command[0] + '</span> ';
+            if(command[1]!== undefined) {
+                terminalString += '<span style="color:white">' + command[1] + '</span> ';
+            }
+            if(command[2]!== undefined) {
+                terminalString += '<span style="color:#bbb">' + command[2] + '</span>';
+            }
+            appendToTerminal(terminalString);
             switch (command[0]) {
                 //mkdir command
                 case 'mkdir':
