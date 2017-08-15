@@ -337,7 +337,8 @@ function openCmd() {
 
 
 function appendToTerminal(text) {
-    $('.window-active .window-content .terminal').append(localStorage.getItem('username') + '@' + getTime() + '> ' + text + '<br>')
+    $('.window-active .window-content .terminal').append(localStorage.getItem('username') + '@' + getTime() + '> ' + text + '<br>');
+    $('.window-active .window-content .terminal').scrollTop($('.window-active .window-content .terminal')[0].scrollHeight);
 }
 /**
  * Terminal commands
