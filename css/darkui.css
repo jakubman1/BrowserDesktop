@@ -1,321 +1,300 @@
 /* HTML component overrides */
-html, body {
-    height: 100%;
-    margin: 0;
+html,
+body {
+  height: 100%;
+  margin: 0;
 }
 body {
-    cursor: url('../assets/cursors/normal.cur'), default;
-    font-family: 'Lato', sans-serif;
-    color: white;
+  font-family: 'Lato', sans-serif;
+  color: white;
+  cursor: url('../assets/cursors/normal.cur'), default;
 }
 a,
 button,
 input,
 .clickable,
 .window-close {
-    cursor: url('../assets/cursors/Link.cur'), pointer;
+  cursor: url('../assets/cursors/Link.cur'), pointer;
 }
 input {
-    font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 .no-select {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -ms-user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 /* Layout */
 .center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 .center-wrapper {
-    width: 100%;
+  width: 100%;
 }
 .logo {
-    margin-left: auto;
-    margin-right: auto;
-    width: 128px;
-    height: 128px;
+  width: 128px;
+  height: 128px;
+  margin-right: auto;
+  margin-left: auto;
 }
 .center-text {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 .fullscreen {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: stretch;
-    position: relative;
-    background: #2c3e50;
-    transition: background 0.25s ease-in-out;
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: #2c3e50;
+  transition: background 0.25s ease-in-out;
+  align-items: stretch;
 }
-.error-text {
-    color: #e74c3c;
-}
+.error-text { color: #e74c3c; }
 
 .version-text {
-    position: absolute;
-    bottom: 0;
-    left: 1em;
-    color: black;
-    opacity: 0.6;
+  position: absolute;
+  bottom: 0;
+  left: 1em;
+  color: black;
+  opacity: 0.6;
 }
-
 
 /* Hexagons */
 .hexagon {
-    fill: #232323;
-    opacity: 0.5;
-    width: 16vw;
-    height: 16vw;
+  width: 16vw;
+  height: 16vw;
+  opacity: 0.5;
+  fill: #232323;
 }
 .hexagon-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 6vw;
-    height: 6vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6vw;
+  height: 6vw;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 .hexagon-wrapper {
-    width: 16vw;
-    height: 16vw;
+  width: 16vw;
+  height: 16vw;
 }
 
 /* Login screen */
 
 .user {
-    border-radius: 100%;
-    background: rgba(0,0,0,0.5);
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 30px;
-    width: 300px;
-    height: 300px;
-    opacity: 0.6;
-    z-index: 1;
-    background: url(../assets/user-default.svg) no-repeat;
-    background-size: cover;
+  z-index: 1;
+  width: 300px;
+  height: 300px;
+  margin-right: auto;
+  margin-bottom: 30px;
+  margin-left: auto;
+  background: rgba(0,0,0,0.5);
+  background: url(../assets/user-default.svg) no-repeat;
+  background-size: cover;
+  border-radius: 100%;
+  opacity: 0.6;
 }
 
 
 .login-input {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 5px;
-    font-size: 2em;
-    padding: 5px 15px;
-    border: 2px solid transparent;
-    border-radius: 25px;
-    width: 300px;
-    text-align: center;
-    transition: all .25s ease-in-out;
+  display: block;
+  width: 300px;
+  padding: 5px 15px;
+  margin-right: auto;
+  margin-bottom: 5px;
+  margin-left: auto;
+  font-size: 2em;
+  text-align: center;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  transition: all .25s ease-in-out;
 }
 .login-input:active,
 .login-input:focus {
-    border: 2px solid #3498db;
-    outline:none;
+  border: 2px solid #3498db;
+  outline:none;
 }
 .login-btn {
-    display: block;
-    text-align: center;
-    width: 300px;
-    border: 2px solid white;
-    border-radius: 25px;
-    padding: 5px 15px;
-    background: transparent;
-
-    color: white;
-    text-decoration: none;
-    font-size: 2em;
-
-    transition: background .25s ease-in-out;
+  display: block;
+  width: 300px;
+  padding: 5px 15px;
+  font-size: 2em;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 25px;
+  transition: background .25s ease-in-out;
 }
-.login-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
-}
+.login-btn:hover { background: rgba(255,255,255,0.25); }
 .login-time {
-    font-size: 8vw;
-    font-weight: 300;
-    transition: font-size 0.5s ease-in-out;
+  font-size: 8vw;
+  font-weight: 300;
+  transition: font-size 0.5s ease-in-out;
 }
 .toolbar {
-    background-color: rgba(0, 0, 0, 0.7);
-    width: 100%;
-    height: 50px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    padding: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  padding: 0;
+  background-color: rgba(0,0,0,0.7);
 }
 .toolbar-items {
-    display: inline-flex;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+  display: inline-flex;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
 }
 .toolbar-item {
-    display: inline-block;
-    /*background-color: rgba(0, 0, 0, 0.5);*/
-    height: 50px;
-    width: auto;
-    font-size: 1.3em;
-    padding: 12px 24px;
+  display: inline-block;
+  width: auto;
+  height: 50px;
+  padding: 12px 24px;
+  font-size: 1.3em;
 
 }
-.toolbar-item:hover {
-    background-color: rgba(255, 255, 255, 0.5);
-}
-.toolbar-item:active {
-    background-color:  rgba(255, 255, 255, 0.3);
-}
-.toolbar-icon {
+.toolbar-item:hover { background-color: rgba(255,255,255,0.5); }
+.toolbar-item:active { background-color:  rgba(255,255,255,0.3); }
 
-}
 .toolbar-icon-lg {
-    width: 26px;
-    height: auto;
+  width: 26px;
+  height: auto;
 }
 .toolbar-time {
-    position: absolute;
-    right: 10px;
-    bottom: 0;
-    display: inline-block;
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+  display: inline-block;
 }
 .menu {
-    position: fixed;
-    bottom: -450px;
-    left: 0;
-    height: 400px;
-    width: 250px;
-    z-index: 10;
-
-    background-color: rgba(0, 0, 0, 0.7);
-
-    -webkit-transition: bottom 0.25s ease-in-out;
-    -moz-transition: bottom 0.25s ease-in-out;
-    -ms-transition: bottom 0.25s ease-in-out;
-    -o-transition: bottom 0.25s ease-in-out;
-        transition: bottom 0.25s ease-in-out;
+  position: fixed;
+  bottom: -450px;
+  left: 0;
+  z-index: 10;
+  width: 250px;
+  height: 400px;
+  background-color: rgba(0,0,0,0.7);
+  transition: bottom 0.25s ease-in-out;
 }
 /* Workspace */
 .workspace {
-    width: 100%;
-    height: calc(100% - 50px);
-    padding: 20px;
-    z-index: 0;
+  z-index: 0;
+  width: 100%;
+  height: calc(100% - 50px);
+  padding: 20px;
 }
 .workspace-icon {
-    width: 100px;
-    height: 100px;
-    margin: 10px;
-    background: transparent;
-    border: 1px dotted transparent;
-    display: inline-block;
-    z-index: 1;
+  z-index: 1;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  background: transparent;
+  border: 1px dotted transparent;
 }
 .workspace-icon:hover {
-    background-color: rgba(255, 255, 255, 0.4);
-    border: 1px dotted white;
+  background-color: rgba(255,255,255,0.4);
+  border: 1px dotted white;
 }
 .workspace-icon:active {
-    background-color:  rgba(255, 255, 255, 0.3);
-    border: 1px solid white;
+  background-color:  rgba(255,255,255,0.3);
+  border: 1px solid white;
 }
 .workspace-icon-img {
-    width: 50px;
-    display: block;
-    margin: 0 auto;
+  display: block;
+  width: 50px;
+  margin: 0 auto;
 }
-.workspace-icon-name {
-    text-align: center;
-}
+.workspace-icon-name { text-align: center; }
 .selected {
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 1px dotted white;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px dotted white;
 }
 .window {
-    width: 550px;
-    height: 350px;
-    background-color: white;
-    border-radius: 3px;
-    position: absolute;
-    z-index: 5;
-
-    border: 1px solid #34495e;
+  position: absolute;
+  z-index: 5;
+  width: 550px;
+  height: 350px;
+  background-color: white;
+  border: 1px solid #34495e;
+  border-radius: 3px;
 }
 .window-topbar {
-    background-color: dimgray;
-    position: relative;
-    width: 100%;
-    height: 30px;
-    top: 0;
-    left: 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background-color: dimgray;
 }
-.window-active {
-    z-index: 6;
-}
+.window-active { z-index: 6; }
 .window-active .window-topbar {
     background-color: #34495e;
 }
 .window-close {
-    color: white;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 30px;
-    height: 30px;
-    background-color: #e74c3c;
-    text-align: center;
-    font-size: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  background-color: #e74c3c;
 }
-.window-close:hover {
-    background-color: #c0392b;
-}
+.window-close:hover { background-color: #c0392b; }
 .window-name {
-    color: white;
-    margin-left: 10px;
-    display: inline-block;
-    margin-top: 5px;
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 10px;
+  color: white;
 }
-.window-content {
-    overflow: hidden;
+.window-content { overflow: hidden; }
+.window-menu {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
 }
+.window-menu-item { color: black; }
 .terminal {
-    overflow-y: scroll;
-    padding-right: 17px;
-    width: 100%;
-    height: auto;
-    min-height: 350px;
-    background: black;
-    color: white;
-    font-size: 0.8em;
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    -khtml-user-select: text;
-    -ms-user-select: text;
-        user-select: text;
+  width: 100%;
+  height: 350px;
+  padding-right: 17px;
+  overflow-y: scroll;
+  font-size: 0.8em;
+  color: white;
+  background: black;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+      -ms-user-select: text;
+          user-select: text;
 }
 .terminal::selection {
-    background: white;
-    color: black;
+  color: black;
+  background: white;
 }
 .terminal-input {
-    background: black;
-    color: white;
-    width: 100%;
-    font-size: 0.8em;
-    border: none;
-    outline: none;
+  width: 100%;
+  font-size: 0.8em;
+  color: white;
+  background: black;
+  border: none;
+  outline: none;
 }
 /* Helper classes */
 
 .hidden {
-    display: none !important;
+  display: none !important;
 }
