@@ -307,24 +307,37 @@ function getFolderById(id) {
 function getFoldersByParent(parentId){
     var json = getFoldersJson();
     var result = {};
+    //Fuck my life. This shit is hard. jQuery bugs, merging errors, JSON problems.. Deep object merging is not easy as it should be.
     jQuery.each(json, function(i, val) {
-        if(val.parent == parentId) {
+        if(val.parent === parentId) {
             if(jQuery.isEmptyObject(result)) {
                 result = val;
             }
             else {
-                $.merge(result, val);
+                //console.log(JSON.stringify(result));
+                //console.log(JSON.stringify(val));
+                result = JSON.stringify(result) + ',' + JSON.stringify(val);
+                result.replace(String.fromCharCode(92),'');
+                console.log(result + ' (result)');
             }
-
         }
     });
+    result = JSON.parse('[' + result + ']');
+    console.log(result);
     return result;
 }
 function openFolder(id) {
     unselect();
     var folderInfo = getFolderById(id);
     if(!jQuery.isEmptyObject(folderInfo) && folderInfo.author === localStorage.getItem("username")) {
-        openWindow(folderInfo.name,"Test");
+        var content = "";
+        var children = getFoldersByParent(id);
+        if(!jQuery.isEmptyObject(children)) {
+            jQuery.each(children, function(i, val) {
+                content += '<div class="folder-icon" ondblclick="openFolder(' + val.id + ')"><img src="assets/folder.png" class="workspace-icon-img"><p class="workspace-icon-name">' + val.name + '</p></div>'
+            });
+        }
+        openWindow(folderInfo.name,content);
         eventListenerUpdate();
     }
     else {
@@ -343,7 +356,7 @@ function openCmd() {
 
 
 function appendToTerminal(text) {
-    $('.window-active .window-content .terminal').append(localStorage.getItem('username') + '@' + getTime() + '> ' + text + '<br>');
+    $('.window-active .window-content .terminal').append(text + '<br>');
     $('.window-active .window-content .terminal').scrollTop($('.window-active .window-content .terminal')[0].scrollHeight);
 }
 /**
@@ -355,7 +368,7 @@ function updateCommandListening() {
             var commandString = $(this).val();
             $(this).val('');
             var command = commandString.split(" ");
-            var terminalString = '<span style="color:yellow">' + command[0] + '</span> ';
+            var terminalString = localStorage.getItem("username") + '@' + getTime() + '><span style="color:yellow">' + command[0] + '</span> ';
             if(command[1]!== undefined) {
                 terminalString += '<span style="color:white">' + command[1] + '</span> ';
             }
@@ -388,7 +401,7 @@ function updateCommandListening() {
                         }
                     }
                     else {
-                        appendToTerminal("Folder name can't be empty");
+                        appendToTerminal('Usage: <span style="color:yellow">mkdir </span><span style="color:white">[folder_name] </span><span style="color:#bbb">(parent folder id)</span>');
                     }
                     break;
                 //Clear command
