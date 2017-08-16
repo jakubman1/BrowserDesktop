@@ -291,6 +291,7 @@ function getFoldersJson() {
 /**
  * Returns object of singe folder with given ID.
  * Returns empty object if folder was not found
+ * @param id - folder ID to return
  */
 function getFolderById(id) {
     var json = getFoldersJson();
@@ -316,8 +317,11 @@ function getFoldersByParent(parentId){
             else {
                 //console.log(JSON.stringify(result));
                 //console.log(JSON.stringify(val));
+                if(typeof(result) == 'string') {
+                    result.replace(String.fromCharCode(92),"");
+                }
+
                 result = JSON.stringify(result) + ',' + JSON.stringify(val);
-                result.replace(String.fromCharCode(92),'');
                 console.log(result + ' (result)');
             }
         }
