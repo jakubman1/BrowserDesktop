@@ -234,7 +234,7 @@ function unselect() {
 function openWindow(name, content) {
     windowId++;
     $('#workspace').append('<div class="window" id="window-'+ windowId +'">\n' +
-        '            <div class="window-toolbar">\n' +
+        '            <div class="window-topbar">\n' +
         '                <div class="window-close" onclick="closeWindow(' + windowId +')">x</div>\n' +
         '                <p class="window-name">' + name + '</p>\n' +
         '            </div>\n' +
@@ -250,7 +250,7 @@ function closeWindow(id) {
 /******************
  * Folders
  *****************/
-/*
+/**
 * Folder structure:
 * { "id": int,
 *   "name": string,
@@ -291,6 +291,7 @@ function getFoldersJson() {
 /**
  * Returns object of singe folder with given ID.
  * Returns empty object if folder was not found
+ * @param id - folder ID to return
  */
 function getFolderById(id) {
     var json = getFoldersJson();
@@ -307,18 +308,40 @@ function getFolderById(id) {
 function getFoldersByParent(parentId){
     var json = getFoldersJson();
     var result = {};
+    //Fuck my life. This shit is hard. jQuery bugs, merging errors, JSON problems.. Deep object merging is not easy as it should be.
     jQuery.each(json, function(i, val) {
-        if(val.parent == parentId) {
-            result += val;
+        if(val.parent === parentId) {
+            if(jQuery.isEmptyObject(result)) {
+                result = val;
+            }
+            else {
+                //console.log(JSON.stringify(result));
+                //console.log(JSON.stringify(val));
+                if(typeof(result) == 'string') {
+                    result.replace(String.fromCharCode(92),"");
+                }
+
+                result = JSON.stringify(result) + ',' + JSON.stringify(val);
+                console.log(result + ' (result)');
+            }
         }
     });
+    result = JSON.parse('[' + result + ']');
+    console.log(result);
     return result;
 }
 function openFolder(id) {
     unselect();
     var folderInfo = getFolderById(id);
     if(!jQuery.isEmptyObject(folderInfo) && folderInfo.author === localStorage.getItem("username")) {
-        openWindow(folderInfo.name,"Test");
+        var content = "";
+        var children = getFoldersByParent(id);
+        if(!jQuery.isEmptyObject(children)) {
+            jQuery.each(children, function(i, val) {
+                content += '<div class="folder-icon" ondblclick="openFolder(' + val.id + ')"><img src="assets/folder.png" class="workspace-icon-img"><p class="workspace-icon-name">' + val.name + '</p></div>'
+            });
+        }
+        openWindow(folderInfo.name,content);
         eventListenerUpdate();
     }
     else {
@@ -337,7 +360,8 @@ function openCmd() {
 
 
 function appendToTerminal(text) {
-    $('.window-active .window-content .terminal').append(localStorage.getItem('username') + '@' + getTime() + '> ' + text + '<br>')
+    $('.window-active .window-content .terminal').append(text + '<br>');
+    $('.window-active .window-content .terminal').scrollTop($('.window-active .window-content .terminal')[0].scrollHeight);
 }
 /**
  * Terminal commands
@@ -346,9 +370,16 @@ function updateCommandListening() {
     $(".terminal-input").keyup(function(event){
         if(event.keyCode == 13){
             var commandString = $(this).val();
-            $(this).val('')
-            appendToTerminal(commandString);
+            $(this).val('');
             var command = commandString.split(" ");
+            var terminalString = localStorage.getItem("username") + '@' + getTime() + '><span style="color:yellow">' + command[0] + '</span> ';
+            if(command[1]!== undefined) {
+                terminalString += '<span style="color:white">' + command[1] + '</span> ';
+            }
+            if(command[2]!== undefined) {
+                terminalString += '<span style="color:#bbb">' + command[2] + '</span>';
+            }
+            appendToTerminal(terminalString);
             switch (command[0]) {
                 //mkdir command
                 case 'mkdir':
@@ -374,7 +405,7 @@ function updateCommandListening() {
                         }
                     }
                     else {
-                        appendToTerminal("Folder name can't be empty");
+                        appendToTerminal('Usage: <span style="color:yellow">mkdir </span><span style="color:white">[folder_name] </span><span style="color:#bbb">(parent folder id)</span>');
                     }
                     break;
                 //Clear command
@@ -401,7 +432,7 @@ function eventListenerUpdate() {
         $('.window-active').removeClass('window-active');
         $(this).addClass('window-active');
     });
-    $( ".window" ).draggable({ handle: ".window-toolbar" });
+    $( ".window" ).draggable({ handle: ".window-topbar", containment: "#workspace", scroll: false });
     $('.terminal').on('click', function(){
         $('.window-active .window-content .terminal-input').focus();
     });
