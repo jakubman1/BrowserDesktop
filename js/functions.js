@@ -15,6 +15,8 @@ var currentFolderId = 0;
 var folderId = 0;
 //This variable holds the biggest Window ID. Used for creating new windows
 var windowId = 0;
+//jQuery selector caching
+var workspace;
 
 
 /******************
@@ -26,7 +28,7 @@ $(document).ready(function(){
     }
     setInterval(updateTime, 1000);
     //Remember login
-    if(localStorage.getItem("username") != null) {
+    if(localStorage.getItem("username") !== null) {
         showRuntimeScreen();
     }
     //Get highest folder ID and assign it to variable
@@ -36,6 +38,8 @@ $(document).ready(function(){
             folderId = val.id;
         }
     });
+    //jQuery selector caching
+    workspace = $('#workspace');
     eventListenerUpdate();
 });
 /**
@@ -167,9 +171,7 @@ function getTime() {
     var seconds;
     if(d.getMinutes() < 10) { minutes = "0" + d.getMinutes()} else { minutes = d.getMinutes() }
     if(d.getSeconds() < 10) { seconds = "0" + d.getSeconds()} else { seconds = d.getSeconds() }
-    var timeString = d.getHours() + ":" + minutes + ":" + seconds;
-    return timeString;
-
+    return d.getHours() + ":" + minutes + ":" + seconds;
 }
 /**
  * Helper function that updates string in element with class .time. Called every 1000ms.
@@ -198,8 +200,8 @@ function renderRuntimeScreen() {
 }
 function logout() {
     toggleMenu();
-    $('#workspace').empty();
-    $('#workspace').append('<div class="workspace-icon" ondblclick="openCmd()"><img src="assets/terminal.png" class="workspace-icon-img"><p class="workspace-icon-name">Terminal</p></div>');
+    workspace.empty();
+    workspace.append('<div class="workspace-icon" ondblclick="openCmd()"><img src="assets/terminal.png" class="workspace-icon-img"><p class="workspace-icon-name">Terminal</p></div>');
     localStorage.removeItem("username");
     $('#startup-screen').removeClass('hidden');
     $('#runtime-screen').addClass('hidden');
@@ -233,7 +235,7 @@ function unselect() {
 }
 function openWindow(name, content) {
     windowId++;
-    $('#workspace').append('<div class="window" id="window-'+ windowId +'">\n' +
+    workspace.append('<div class="window" id="window-'+ windowId +'">\n' +
         '            <div class="window-topbar">\n' +
         '                <div class="window-close" onclick="closeWindow(' + windowId +')">x</div>\n' +
         '                <p class="window-name">' + name + '</p>\n' +
@@ -260,12 +262,12 @@ function closeWindow(id) {
 * */
 function addFolder(name, parent) {
     folderId++;
-    if(parent === null || typeof parent == 'undefined') {
+    if(parent === null || typeof parent === 'undefined') {
         parent = currentFolderId;
     }
     var folders = localStorage.getItem("folders");
     var json;
-    if(folders != null && folders != "") {
+    if(folders !== null && folders !== "") {
         json = JSON.parse(folders);
         json = $.merge(json, [{"id":folderId,"name":name,"author":localStorage.getItem("username"),"parent":parent}]);
     }
@@ -273,7 +275,7 @@ function addFolder(name, parent) {
         json = [{"id":folderId,"name":name,"author":localStorage.getItem("username"),"parent":parent}];
     }
     if(parent === 0) {
-        $('#workspace').append('<div class="workspace-icon" ondblclick="openFolder(' + folderId + ')"><img src="assets/folder.png" class="workspace-icon-img"><p class="workspace-icon-name">' + name + '</p></div>');
+        workspace.append('<div class="workspace-icon" ondblclick="openFolder(' + folderId + ')"><img src="assets/folder.png" class="workspace-icon-img"><p class="workspace-icon-name">' + name + '</p></div>');
         eventListenerUpdate();
     }
     localStorage.setItem("folders",JSON.stringify(json));
@@ -360,8 +362,9 @@ function openCmd() {
 
 
 function appendToTerminal(text) {
-    $('.window-active .window-content .terminal').append(text + '<br>');
-    $('.window-active .window-content .terminal').scrollTop($('.window-active .window-content .terminal')[0].scrollHeight);
+    var activeTerminal = $('.window-active .window-content .terminal');
+    activeTerminal.append(text + '<br>');
+    activeTerminal.scrollTop(activeTerminal[0].scrollHeight);
 }
 /**
  * Terminal commands
@@ -401,7 +404,7 @@ function updateCommandListening() {
                         }
                         else {
                             addFolder(command[1],0);
-                            appendToTerminal('Folder ' + command[1] + ' created');
+                            appendToTerminal('Folder ' + command[1] + ' created on desktop');
                         }
                     }
                     else {
@@ -410,7 +413,7 @@ function updateCommandListening() {
                     break;
                 //Clear command
                 case 'clear':
-                    $('.terminal').empty();
+                    $('.window-active .window-content .terminal').empty();
                     break;
                 default:
                     appendToTerminal(command[0] + ' is not a valid command.');
