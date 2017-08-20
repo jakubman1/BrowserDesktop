@@ -309,26 +309,17 @@ function getFolderById(id) {
 }
 function getFoldersByParent(parentId){
     var json = getFoldersJson();
-    var result = {};
-    //Fuck my life. This shit is hard. jQuery bugs, merging errors, JSON problems.. Deep object merging is not easy as it should be.
+    var result;
     jQuery.each(json, function(i, val) {
         if(val.parent === parentId) {
-            if(jQuery.isEmptyObject(result)) {
+            /*if(jQuery.isEmptyObject(result)) {
                 result = val;
             }
-            else {
-                //console.log(JSON.stringify(result));
-                //console.log(JSON.stringify(val));
-                if(typeof(result) == 'string') {
-                    result.replace(String.fromCharCode(92),"");
-                }
-
-                result = JSON.stringify(result) + ',' + JSON.stringify(val);
-                console.log(result + ' (result)');
-            }
+            else {*/
+                result = jQuery.extend(true, {}, result, val);
+            //}
         }
     });
-    result = JSON.parse('[' + result + ']');
     console.log(result);
     return result;
 }
@@ -338,6 +329,8 @@ function openFolder(id) {
     if(!jQuery.isEmptyObject(folderInfo) && folderInfo.author === localStorage.getItem("username")) {
         var content = "";
         var children = getFoldersByParent(id);
+        console.log(children);
+        console.log('children');
         if(!jQuery.isEmptyObject(children)) {
             jQuery.each(children, function(i, val) {
                 content += '<div class="folder-icon" ondblclick="openFolder(' + val.id + ')"><img src="assets/folder.png" class="workspace-icon-img"><p class="workspace-icon-name">' + val.name + '</p></div>'
